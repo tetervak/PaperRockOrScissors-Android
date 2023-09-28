@@ -49,7 +49,10 @@ fun PlayScreen(
             userChoice = userChoice,
             onChange = onUserChoiceChange
         )
-        Button(onClick = onPlay) {
+        Button(
+            onClick = onPlay,
+            enabled = userChoice != Choice.UNKNOWN
+        ) {
             Icon(
                 imageVector = Icons.Filled.Check,
                 contentDescription = null
