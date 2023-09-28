@@ -29,8 +29,7 @@ class GameViewModel @Inject constructor(
                     gameResult = getGameResultUseCase(
                         userChoice = state.userChoice,
                         computerChoice = computerChoice
-                    ),
-                    screen = Screen.RESULT
+                    )
                 )
             }
         }
