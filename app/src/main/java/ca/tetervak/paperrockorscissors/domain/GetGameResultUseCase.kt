@@ -10,7 +10,7 @@ class GetGameResultUseCase @Inject constructor(
         userChoice: Choice,
         computerChoice: Choice
     ): GameResult = gameService.getGameResult(
-        userChoice =  userChoice,
+        userChoice = userChoice,
         computerChoice = computerChoice
     )
 }

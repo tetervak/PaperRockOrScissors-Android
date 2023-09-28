@@ -17,6 +17,7 @@
 
     <string name="computer">Computer</string>
     <string name="you">You</string>
+
     <string name="unknown">Unknown</string>
     <string name="unknown_result">Unknown result</string>
 </resources>

@@ -21,7 +21,7 @@ class GameViewModel @Inject constructor(
     val uiState: StateFlow<GameUiState> = _uiState
 
     fun onPlay() {
-        if(uiState.value.userChoice != Choice.UNKNOWN){
+        if (uiState.value.userChoice != Choice.UNKNOWN) {
             val computerChoice = getRandomChoiceUseCase()
             _uiState.update { state ->
                 state.copy(

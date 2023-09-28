@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 class GameServiceImpl(
     private val random: Random = Random.Default
-): GameService {
+) : GameService {
 
     private val choices: List<Choice> =
         Choice.values().slice(0..2)
@@ -25,18 +25,21 @@ class GameServiceImpl(
                 Choice.SCISSORS -> GameResult.COMPUTER_WINS
                 else -> GameResult.UNKNOWN
             }
+
             Choice.ROCK -> when (computerChoice) {
                 Choice.PAPER -> GameResult.COMPUTER_WINS
                 Choice.ROCK -> GameResult.REPLAY
                 Choice.SCISSORS -> GameResult.USER_WINS
                 else -> GameResult.UNKNOWN
             }
+
             Choice.SCISSORS -> when (computerChoice) {
                 Choice.PAPER -> GameResult.USER_WINS
                 Choice.ROCK -> GameResult.COMPUTER_WINS
                 Choice.SCISSORS -> GameResult.REPLAY
                 else -> GameResult.UNKNOWN
             }
+
             else -> GameResult.UNKNOWN
         }
 }
