@@ -1,28 +1,32 @@
 package ca.tetervak.paperrockorscissors.ui
 
 import androidx.lifecycle.ViewModel
-import ca.tetervak.paperrockorscissors.data.local.GameService
-import ca.tetervak.paperrockorscissors.data.local.GameServiceImpl
 import ca.tetervak.paperrockorscissors.domain.Choice
+import ca.tetervak.paperrockorscissors.domain.GetGameResultUseCase
+import ca.tetervak.paperrockorscissors.domain.GetRandomChoiceUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
-class GameViewModel : ViewModel() {
+@HiltViewModel
+class GameViewModel @Inject constructor(
+    private val getRandomChoiceUseCase: GetRandomChoiceUseCase,
+    private val getGameResultUseCase: GetGameResultUseCase
+) : ViewModel() {
 
     private val _uiState: MutableStateFlow<GameUiState> =
         MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState
 
-    private val gameService: GameService = GameServiceImpl()
-
     fun onPlay() {
         if(uiState.value.userChoice != Choice.UNKNOWN){
-            val computerChoice = gameService.getRandomChoice()
+            val computerChoice = getRandomChoiceUseCase()
             _uiState.update { state ->
                 state.copy(
                     computerChoice = computerChoice,
-                    gameResult = gameService.getGameResult(
+                    gameResult = getGameResultUseCase(
                         userChoice = state.userChoice,
                         computerChoice = computerChoice
                     ),
